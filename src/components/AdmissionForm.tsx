@@ -141,16 +141,53 @@ export function AdmissionForm() {
                     <Input id="name" placeholder="John Doe" />
                 </div>
                 <div className="grid gap-2">
+                    <Label htmlFor="father-name">Father's Name</Label>
+                    <Input id="father-name" placeholder="Richard Roe" />
+                </div>
+                <div className="grid gap-2">
+                    <Label htmlFor="cnic">CNIC</Label>
+                    <Input id="cnic" placeholder="XXXXX-XXXXXXX-X" />
+                </div>
+                <div className="grid gap-2">
+                    <Label htmlFor="dob">Date of Birth</Label>
+                    <DatePicker />
+                </div>
+                <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
                     <Input id="email" type="email" placeholder="john.doe@example.com" />
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" placeholder="+1 (555) 123-4567" />
+                    <Input id="phone" type="tel" placeholder="+92 300 1234567" />
                 </div>
                 <div className="grid gap-2">
-                    <Label htmlFor="dob">Date of Birth</Label>
-                    <DatePicker />
+                    <Label htmlFor="guardian-name">Guardian's Name</Label>
+                    <Input id="guardian-name" placeholder="Jane Doe" />
+                </div>
+                <div className="grid gap-2">
+                    <Label htmlFor="guardian-phone">Guardian's Phone</Label>
+                    <Input id="guardian-phone" type="tel" placeholder="+92 300 1234567" />
+                </div>
+                 <div className="grid gap-2">
+                    <Label htmlFor="domicile">Domicile (City)</Label>
+                    <Input id="domicile" placeholder="e.g. Lahore" />
+                </div>
+                <div className="grid gap-2">
+                    <Label htmlFor="province">Province</Label>
+                    <Select>
+                        <SelectTrigger id="province">
+                            <SelectValue placeholder="Select a province" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="punjab">Punjab</SelectItem>
+                            <SelectItem value="sindh">Sindh</SelectItem>
+                            <SelectItem value="kpk">Khyber Pakhtunkhwa</SelectItem>
+                            <SelectItem value="balochistan">Balochistan</SelectItem>
+                            <SelectItem value="gb">Gilgit-Baltistan</SelectItem>
+                            <SelectItem value="ajk">Azad Jammu & Kashmir</SelectItem>
+                            <SelectItem value="ict">Islamabad Capital Territory</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
                 <div className="grid gap-2 sm:col-span-2">
                     <Label htmlFor="address">Address</Label>
