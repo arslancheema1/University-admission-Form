@@ -21,6 +21,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { DatePicker } from "./DatePicker"
 import { useState, useRef } from "react"
 import { Camera } from "lucide-react"
+import { Separator } from "@/components/ui/separator"
 
 export function AdmissionForm() {
   const [photo, setPhoto] = useState<string | null>(null)
@@ -37,8 +38,8 @@ export function AdmissionForm() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto py-12 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute top-12 right-4 sm:right-6 lg:right-8">
+    <Card className="w-full max-w-3xl relative shadow-2xl">
+      <div className="absolute top-8 right-8 z-10">
         <input
           type="file"
           accept="image/*"
@@ -47,7 +48,7 @@ export function AdmissionForm() {
           onChange={handlePhotoChange}
         />
         <div
-          className="w-32 h-40 border bg-card rounded-lg flex flex-col items-center justify-center text-center p-2 shadow-sm cursor-pointer hover:bg-accent transition-colors"
+          className="w-32 h-40 border bg-background rounded-lg flex flex-col items-center justify-center text-center p-2 shadow-sm cursor-pointer hover:bg-accent transition-colors"
           onClick={handlePhotoBoxClick}
         >
           {photo ? (
@@ -60,17 +61,20 @@ export function AdmissionForm() {
           )}
         </div>
       </div>
-      <h1 className="text-3xl font-bold tracking-tight text-center mb-2">Admission Form</h1>
-      <p className="text-muted-foreground text-center mb-8">Please fill out the form below to apply for admission.</p>
 
-      <div className="grid grid-cols-1 gap-8">
-        {/* Admission Info Section */}
-        <Card className="w-full">
-            <CardHeader>
-                <CardTitle>Admission Information</CardTitle>
-                <CardDescription>Select your desired course and department.</CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-4">
+      <CardHeader className="text-center pt-8">
+        <CardTitle className="text-4xl font-extrabold tracking-tight">Admission Form</CardTitle>
+        <CardDescription className="text-lg text-muted-foreground mt-2">
+          Please fill out the form below to apply for admission.
+        </CardDescription>
+      </CardHeader>
+      
+      <CardContent className="p-8">
+        <div className="space-y-12">
+          <section>
+            <h2 className="text-xl font-semibold tracking-tight">Admission Information</h2>
+            <p className="text-sm text-muted-foreground mb-6 mt-1">Select your desired course and department.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="grid gap-2">
                     <Label htmlFor="department">Department</Label>
                     <Select>
@@ -123,16 +127,15 @@ export function AdmissionForm() {
                         </SelectContent>
                     </Select>
                 </div>
-            </CardContent>
-        </Card>
-
-        {/* Personal Info Section */}
-        <Card className="w-full">
-            <CardHeader>
-                <CardTitle>Personal Information</CardTitle>
-                <CardDescription>Please provide your personal details.</CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-4">
+            </div>
+          </section>
+          
+          <Separator />
+          
+          <section>
+            <h2 className="text-xl font-semibold tracking-tight">Personal Information</h2>
+            <p className="text-sm text-muted-foreground mb-6 mt-1">Please provide your personal details.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="grid gap-2">
                     <Label htmlFor="name">Full Name</Label>
                     <Input id="name" placeholder="John Doe" />
@@ -149,20 +152,19 @@ export function AdmissionForm() {
                     <Label htmlFor="dob">Date of Birth</Label>
                     <DatePicker />
                 </div>
-                <div className="grid gap-2">
+                <div className="grid gap-2 sm:col-span-2">
                     <Label htmlFor="address">Address</Label>
                     <Textarea id="address" placeholder="123 Main St, Anytown, USA" />
                 </div>
-            </CardContent>
-        </Card>
+            </div>
+          </section>
 
-        {/* Educational Info Section */}
-        <Card className="w-full">
-            <CardHeader>
-                <CardTitle>Educational Information</CardTitle>
-                <CardDescription>Please provide your previous academic record.</CardDescription>
-            </CardHeader>
-            <CardContent className="grid sm:grid-cols-2 gap-4">
+          <Separator />
+
+          <section>
+            <h2 className="text-xl font-semibold tracking-tight">Educational Information</h2>
+            <p className="text-sm text-muted-foreground mb-6 mt-1">Please provide your previous academic record.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="grid gap-2">
                     <Label htmlFor="matric-marks">Matriculation Marks</Label>
                     <Input id="matric-marks" type="number" placeholder="e.g. 950" />
@@ -171,13 +173,14 @@ export function AdmissionForm() {
                     <Label htmlFor="fsc-marks">FSC/Intermediate Marks</Label>
                     <Input id="fsc-marks" type="number" placeholder="e.g. 980" />
                 </div>
-            </CardContent>
-        </Card>
-      </div>
+            </div>
+          </section>
+        </div>
+      </CardContent>
 
-      <CardFooter className="flex justify-center mt-8 px-0">
+      <CardFooter className="flex justify-center p-8 bg-slate-50 dark:bg-slate-900/50 rounded-b-lg">
         <Button size="lg" className="w-full max-w-xs">Submit Application</Button>
       </CardFooter>
-    </div>
+    </Card>
   )
 }
