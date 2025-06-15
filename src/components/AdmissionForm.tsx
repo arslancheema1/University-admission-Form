@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -36,7 +37,7 @@ export function AdmissionForm() {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8 relative">
+    <div className="w-full max-w-2xl mx-auto py-12 px-4 sm:px-6 lg:px-8 relative">
       <div className="absolute top-12 right-4 sm:right-6 lg:right-8">
         <input
           type="file"
@@ -62,7 +63,7 @@ export function AdmissionForm() {
       <h1 className="text-3xl font-bold tracking-tight text-center mb-2">Admission Form</h1>
       <p className="text-muted-foreground text-center mb-8">Please fill out the form below to apply for admission.</p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div className="grid grid-cols-1 gap-8">
         {/* Admission Info Section */}
         <Card className="w-full">
             <CardHeader>
@@ -156,7 +157,7 @@ export function AdmissionForm() {
         </Card>
 
         {/* Educational Info Section */}
-        <Card className="w-full lg:col-span-2">
+        <Card className="w-full">
             <CardHeader>
                 <CardTitle>Educational Information</CardTitle>
                 <CardDescription>Please provide your previous academic record.</CardDescription>
