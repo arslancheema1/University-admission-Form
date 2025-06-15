@@ -22,6 +22,7 @@ import { DatePicker } from "./DatePicker"
 import { useState, useRef } from "react"
 import { Camera } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import { CnicInput } from "./CnicInput"
 
 export function AdmissionForm() {
   const [photo, setPhoto] = useState<string | null>(null)
@@ -35,6 +36,10 @@ export function AdmissionForm() {
 
   const handlePhotoBoxClick = () => {
     fileInputRef.current?.click()
+  }
+
+  const allowOnlyAlphabets = (e: React.FormEvent<HTMLInputElement>) => {
+    e.currentTarget.value = e.currentTarget.value.replace(/[^a-zA-Z\s]/g, '')
   }
 
   return (
@@ -137,16 +142,20 @@ export function AdmissionForm() {
             <p className="text-sm text-muted-foreground mb-6 mt-1">Please provide your personal details.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="grid gap-2">
-                    <Label htmlFor="name">Full Name</Label>
-                    <Input id="name" placeholder="John Doe" />
+                    <Label htmlFor="first-name">First Name</Label>
+                    <Input id="first-name" placeholder="John" onInput={allowOnlyAlphabets} />
+                </div>
+                <div className="grid gap-2">
+                    <Label htmlFor="last-name">Last Name</Label>
+                    <Input id="last-name" placeholder="Doe" onInput={allowOnlyAlphabets} />
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="father-name">Father's Name</Label>
-                    <Input id="father-name" placeholder="Richard Roe" />
+                    <Input id="father-name" placeholder="Richard Roe" onInput={allowOnlyAlphabets}/>
                 </div>
                 <div className="grid gap-2">
-                    <Label htmlFor="cnic">CNIC</Label>
-                    <Input id="cnic" placeholder="XXXXX-XXXXXXX-X" />
+                    <Label htmlFor="cnic">Applicant CNIC</Label>
+                    <CnicInput id="cnic" placeholder="XXXXX-XXXXXXX-X" />
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="dob">Date of Birth</Label>
@@ -162,7 +171,7 @@ export function AdmissionForm() {
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="guardian-name">Guardian's Name</Label>
-                    <Input id="guardian-name" placeholder="Jane Doe" />
+                    <Input id="guardian-name" placeholder="Jane Doe" onInput={allowOnlyAlphabets}/>
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="guardian-phone">Guardian's Phone</Label>
@@ -170,7 +179,7 @@ export function AdmissionForm() {
                 </div>
                  <div className="grid gap-2">
                     <Label htmlFor="domicile">Domicile (City)</Label>
-                    <Input id="domicile" placeholder="e.g. Lahore" />
+                    <Input id="domicile" placeholder="e.g. Lahore" onInput={allowOnlyAlphabets}/>
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="province">Province</Label>
