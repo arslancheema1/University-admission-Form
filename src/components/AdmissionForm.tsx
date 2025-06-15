@@ -22,7 +22,12 @@ import { DatePicker } from "./DatePicker"
 
 export function AdmissionForm() {
   return (
-    <div className="w-full max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div className="w-full max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8 relative">
+        <div className="absolute top-12 right-4 sm:right-6 lg:right-8">
+            <div className="w-32 h-40 border bg-card rounded-lg flex flex-col items-center justify-center text-center p-2 shadow-sm">
+                <span className="text-sm text-muted-foreground">Attach Photo</span>
+            </div>
+        </div>
         <h1 className="text-3xl font-bold tracking-tight text-center mb-2">Admission Form</h1>
         <p className="text-muted-foreground text-center mb-8">Please fill out the form below to apply for admission.</p>
 
@@ -74,6 +79,18 @@ export function AdmissionForm() {
                             </SelectContent>
                         </Select>
                     </div>
+                    <div className="grid gap-2">
+                        <Label htmlFor="shift">Shift</Label>
+                        <Select>
+                            <SelectTrigger id="shift">
+                                <SelectValue placeholder="Select a shift" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="morning">Morning</SelectItem>
+                                <SelectItem value="evening">Evening</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </CardContent>
             </Card>
 
@@ -103,6 +120,24 @@ export function AdmissionForm() {
                     <div className="grid gap-2">
                         <Label htmlFor="address">Address</Label>
                         <Textarea id="address" placeholder="123 Main St, Anytown, USA" />
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* Educational Info Section */}
+            <Card className="w-full lg:col-span-2">
+                <CardHeader>
+                    <CardTitle>Educational Information</CardTitle>
+                    <CardDescription>Please provide your previous academic record.</CardDescription>
+                </CardHeader>
+                <CardContent className="grid sm:grid-cols-2 gap-4">
+                    <div className="grid gap-2">
+                        <Label htmlFor="matric-marks">Matriculation Marks</Label>
+                        <Input id="matric-marks" type="number" placeholder="e.g. 950" />
+                    </div>
+                    <div className="grid gap-2">
+                        <Label htmlFor="fsc-marks">FSC/Intermediate Marks</Label>
+                        <Input id="fsc-marks" type="number" placeholder="e.g. 980" />
                     </div>
                 </CardContent>
             </Card>
