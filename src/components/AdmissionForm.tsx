@@ -210,15 +210,72 @@ export function AdmissionForm() {
           <section>
             <h2 className="text-xl font-semibold tracking-tight">Educational Information</h2>
             <p className="text-sm text-muted-foreground mb-6 mt-1">Please provide your previous academic record.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="grid gap-2">
-                    <Label htmlFor="matric-marks">Matriculation Marks</Label>
-                    <Input id="matric-marks" type="number" placeholder="e.g. 950" />
+            
+            <div className="space-y-6">
+              {/* SSC Section */}
+              <div className="border p-4 rounded-lg">
+                <h3 className="text-lg font-medium mb-4">Matriculation / SSC</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                  <div className="grid gap-2">
+                    <Label htmlFor="ssc-group">Group</Label>
+                    <Select>
+                      <SelectTrigger id="ssc-group">
+                        <SelectValue placeholder="Select group" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="science">Science</SelectItem>
+                        <SelectItem value="arts">Arts</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="ssc-year">Passing Year</Label>
+                    <Input id="ssc-year" type="number" placeholder="e.g. 2021" />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="ssc-obtained-marks">Obtained Marks</Label>
+                    <Input id="ssc-obtained-marks" type="number" placeholder="e.g. 950" />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="ssc-total-marks">Total Marks</Label>
+                    <Input id="ssc-total-marks" type="number" placeholder="e.g. 1100" />
+                  </div>
                 </div>
-                <div className="grid gap-2">
-                    <Label htmlFor="fsc-marks">FSC/Intermediate Marks</Label>
-                    <Input id="fsc-marks" type="number" placeholder="e.g. 980" />
+              </div>
+
+              {/* HSSC Section */}
+              <div className="border p-4 rounded-lg">
+                <h3 className="text-lg font-medium mb-4">Intermediate / HSSC</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                  <div className="grid gap-2">
+                    <Label htmlFor="hssc-group">Group</Label>
+                    <Select>
+                      <SelectTrigger id="hssc-group">
+                        <SelectValue placeholder="Select group" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="pre-eng">Pre-Engineering</SelectItem>
+                        <SelectItem value="pre-med">Pre-Medical</SelectItem>
+                        <SelectItem value="ics">ICS</SelectItem>
+                        <SelectItem value="icom">I.Com</SelectItem>
+                        <SelectItem value="fa">F.A.</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="hssc-year">Passing Year</Label>
+                    <Input id="hssc-year" type="number" placeholder="e.g. 2023" />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="hssc-obtained-marks">Obtained Marks</Label>
+                    <Input id="hssc-obtained-marks" type="number" placeholder="e.g. 980" />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="hssc-total-marks">Total Marks</Label>
+                    <Input id="hssc-total-marks" type="number" placeholder="e.g. 1100" />
+                  </div>
                 </div>
+              </div>
             </div>
           </section>
         </div>
