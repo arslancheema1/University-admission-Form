@@ -23,6 +23,7 @@ import { useState, useRef } from "react"
 import { Camera } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { CnicInput } from "./CnicInput"
+import { toast } from "sonner"
 
 export function AdmissionForm() {
   const [photo, setPhoto] = useState<string | null>(null)
@@ -38,9 +39,33 @@ export function AdmissionForm() {
     fileInputRef.current?.click()
   }
 
-  const allowOnlyAlphabets = (e: React.FormEvent<HTMLInputElement>) => {
-    e.currentTarget.value = e.currentTarget.value.replace(/[^a-zA-Z\s]/g, '')
-  }
+  const handleAlphabetInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const input = e.currentTarget;
+    const value = input.value;
+    const sanitizedValue = value.replace(/[^a-zA-Z\s]/g, "");
+
+    if (value !== sanitizedValue) {
+      toast.error("Invalid Character", {
+        description: "Only alphabets and spaces are allowed.",
+        duration: 2000,
+      });
+    }
+    input.value = sanitizedValue;
+  };
+
+  const handlePhoneInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const input = e.currentTarget;
+    const value = input.value;
+    const sanitizedValue = value.replace(/[^0-9+\s-]/g, "");
+
+    if (value !== sanitizedValue) {
+      toast.error("Invalid Character", {
+        description: "Only numbers and special characters (+, -) are allowed.",
+        duration: 2000,
+      });
+    }
+    input.value = sanitizedValue;
+  };
 
   return (
     <Card className="w-full max-w-3xl relative shadow-2xl">
@@ -143,15 +168,15 @@ export function AdmissionForm() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="grid gap-2">
                     <Label htmlFor="first-name">First Name</Label>
-                    <Input id="first-name" placeholder="John" onInput={allowOnlyAlphabets} />
+                    <Input id="first-name" placeholder="John" onInput={handleAlphabetInput} />
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="last-name">Last Name</Label>
-                    <Input id="last-name" placeholder="Doe" onInput={allowOnlyAlphabets} />
+                    <Input id="last-name" placeholder="Doe" onInput={handleAlphabetInput} />
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="father-name">Father's Name</Label>
-                    <Input id="father-name" placeholder="Richard Roe" onInput={allowOnlyAlphabets}/>
+                    <Input id="father-name" placeholder="Richard Roe" onInput={handleAlphabetInput}/>
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="cnic">Applicant CNIC</Label>
@@ -167,19 +192,19 @@ export function AdmissionForm() {
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" placeholder="+92 300 1234567" />
+                    <Input id="phone" type="tel" placeholder="+92 300 1234567" onInput={handlePhoneInput} />
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="guardian-name">Guardian's Name</Label>
-                    <Input id="guardian-name" placeholder="Jane Doe" onInput={allowOnlyAlphabets}/>
+                    <Input id="guardian-name" placeholder="Jane Doe" onInput={handleAlphabetInput}/>
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="guardian-phone">Guardian's Phone</Label>
-                    <Input id="guardian-phone" type="tel" placeholder="+92 300 1234567" />
+                    <Input id="guardian-phone" type="tel" placeholder="+92 300 1234567" onInput={handlePhoneInput} />
                 </div>
                  <div className="grid gap-2">
                     <Label htmlFor="domicile">Domicile (City)</Label>
-                    <Input id="domicile" placeholder="e.g. Lahore" onInput={allowOnlyAlphabets}/>
+                    <Input id="domicile" placeholder="e.g. Lahore" onInput={handleAlphabetInput}/>
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="province">Province</Label>

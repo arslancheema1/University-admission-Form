@@ -1,6 +1,7 @@
 
 import * as React from "react"
 import { Input } from "@/components/ui/input"
+import { toast } from "sonner"
 
 const CnicInput = React.forwardRef<
   HTMLInputElement,
@@ -11,6 +12,13 @@ const CnicInput = React.forwardRef<
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
     const digitsOnly = inputValue.replace(/\D/g, "")
+
+    if (inputValue.replace(/-/g, "").length !== digitsOnly.length) {
+      toast.error("Invalid Character", {
+        description: "Only numbers are allowed for CNIC.",
+        duration: 2000,
+      })
+    }
     
     let formatted = ""
     if (digitsOnly.length > 0) {
